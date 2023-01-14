@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: wheat;
+    font-family: "Dancing Script", sans-serif;
+    height: 100vh;
+}
+
+#sheet {
+    width: 50%;
+    height: 50%;
+    background-color: #fff;
+    border: solid;
+}
