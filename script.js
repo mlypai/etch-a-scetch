@@ -6,6 +6,8 @@ const black = document.getElementById('black');
 const color = document.getElementById('color');
 const shadow = document.getElementById('shadow');
 const rainbow = document.getElementById('rainbow');
+const clear = document.getElementById('clear');
+
 const wheel = document.getElementById('wheel');
 const colorPicker = document.getElementById('colorPicker');
 var grid;
@@ -28,6 +30,7 @@ function createGrid(){
     }
     grid = document.querySelectorAll('.grid');
     grid.forEach(a => a.addEventListener("mouseover", () => paint(a)));
+    clear.addEventListener('click', () => grid.forEach(a => a.style.backgroundColor = 'white'));
 }
 
 if(!grid)
@@ -43,6 +46,13 @@ function paint(grid){
         grid.style.backgroundColor = 'black';
     if(color.classList.contains('active'))
         grid.style.backgroundColor = colorPicker.value;
+    if(rainbow.classList.contains('active'))
+        grid.style.backgroundColor = `rgb(${getRand()}, ${getRand()}, ${getRand()})`;
+}
+
+function getRand()
+{
+    return Math.floor(Math.random() * 256);
 }
 
 mode.forEach(a => a.addEventListener('click', () => {
@@ -54,5 +64,3 @@ mode.forEach(a => a.addEventListener('click', () => {
         wheel.style.visibility = "hidden";
 }));
 
-/*if (black.classList.contains('active'))
-    grid.forEach(a => a.addEventListener('mouseover', () => a.style.backgroundColor = 'black'));*/
