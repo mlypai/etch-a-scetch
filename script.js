@@ -14,22 +14,16 @@ var grid;
 black.classList.add('active');
 
 function createGrid(){
-    for(let i = 0; i < gridSize.value; i++)
+    for(let i = 0; i < gridSize.value * gridSize.value; i++)
     {
-        var row = document.createElement('div');
-        row.classList.add('row');
-        row.style.height = `${100 / gridSize.value}%`;
-        for(let j = 0; j < gridSize.value; j++)
-        {
-            var elem =document.createElement('div');
-            elem.classList.add('grid');
-            elem.style.width = `${100 / gridSize.value}%`;
-            row.appendChild(elem);
-        }
-        container.appendChild(row);
+        var elem = document.createElement('div');
+        elem.classList.add('grid');
+        elem.style.height = `${100 / gridSize.value}%`;
+        elem.style.width = `${100 / gridSize.value}%`;
+        container.appendChild(elem);
     }
     grid = document.querySelectorAll('.grid');
-    grid.forEach(a => a.addEventListener("mouseover", () => paint(a)));
+    grid.forEach(a => a.addEventListener('mouseover', () => paint(a)));
     clear.addEventListener('click', () => grid.forEach(a => a.style.backgroundColor = 'white'));
 }
 
@@ -37,7 +31,7 @@ if(!grid)
     createGrid();
 gridSize.addEventListener('change', () => 
     {
-        document.querySelectorAll('.row').forEach(a => container.removeChild(a));
+        document.querySelectorAll('.grid').forEach(a => container.removeChild(a));
         createGrid();
     });
 

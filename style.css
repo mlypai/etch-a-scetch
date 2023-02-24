@@ -28,12 +28,15 @@ body {
 }
 
 #sheet {
+    display: flex;
+    flex-wrap: wrap;
     margin-left: 20px;
     height: 750px;
     width:750px;
     background-color: #fff;
     border: solid;
 }
+
 
 button {
     background-color: wheat;
