@@ -6,6 +6,8 @@ const black = document.getElementById('black');
 const color = document.getElementById('color');
 const shadow = document.getElementById('shadow');
 const rainbow = document.getElementById('rainbow');
+const wheel = document.getElementById('wheel');
+const colorPicker = document.getElementById('colorPicker');
 black.classList.add('active');
 
 for(let i = 0; i < gridSize; i++)
@@ -25,31 +27,21 @@ for(let i = 0; i < gridSize; i++)
 
 grid = document.querySelectorAll('.grid');
 
+function colorWheel(){
+    if(color.classList.contains('active'))
+    {
+        wheel.style.visibility ="visible";
+    }
+    else{
+        wheel.style.visibility = "hidden";
+    }
+}
+
 mode.forEach(a => a.addEventListener('click', () => {
     mode.forEach(x => x.classList.remove('active'));
-    a.classList.add('active'); 
+    a.classList.add('active');
+    colorWheel();
 }));
 
-/*black.addEventListener('click', () =>
-
-    {
-            mode.forEach(a => a.classList.remove('active'));
-            black.classList.add('active');
-    }
-);
-color.addEventListener('click', () => {if(!color.classList.contains(active))
-{
-    mode.forEach(a => a.classList.remove('active'));
-    color.classList.add('active');
-}});
-shadow.addEventListener('click', () => {if(!shadow.classList.contains(active))
-    {
-        mode.forEach(a => a.classList.remove('active'));
-        shadow.classList.add('active');
-    }});
-    rainbow.addEventListener('click', () => {
-            mode.forEach(a => a.classList.remove('active'));
-            rainbow.classList.add('active');
-        });*/
 if (black.classList.contains('active'))
     grid.forEach(a => a.addEventListener('mouseover', () => a.style.backgroundColor = 'black'));
