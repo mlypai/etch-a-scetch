@@ -1,5 +1,5 @@
 var container = document.getElementById('sheet');
-let gridSize = 16;
+let gridSize = document.getElementById('size');
 
 var mode = document.querySelectorAll('.mode');
 const black = document.getElementById('black');
@@ -8,40 +8,51 @@ const shadow = document.getElementById('shadow');
 const rainbow = document.getElementById('rainbow');
 const wheel = document.getElementById('wheel');
 const colorPicker = document.getElementById('colorPicker');
+var grid;
 black.classList.add('active');
 
-for(let i = 0; i < gridSize; i++)
-{
-    var grid = document.createElement('div');
-
-    grid.style.height = `${100 / gridSize}%`;
-    for(let j = 0; j < gridSize; j++)
+function createGrid(){
+    for(let i = 0; i < gridSize.value; i++)
     {
-        var elem =document.createElement('div');
-        elem.classList.add('grid');
-        elem.style.width = `${100 / gridSize}%`;
-        grid.appendChild(elem);
+        var row = document.createElement('div');
+        row.classList.add('row');
+        row.style.height = `${100 / gridSize.value}%`;
+        for(let j = 0; j < gridSize.value; j++)
+        {
+            var elem =document.createElement('div');
+            elem.classList.add('grid');
+            elem.style.width = `${100 / gridSize.value}%`;
+            row.appendChild(elem);
+        }
+        container.appendChild(row);
     }
-    container.appendChild(grid);
+    grid = document.querySelectorAll('.grid');
+    grid.forEach(a => a.addEventListener("mouseover", () => paint(a)));
 }
 
-grid = document.querySelectorAll('.grid');
-
-function colorWheel(){
-    if(color.classList.contains('active'))
+if(!grid)
+    createGrid();
+gridSize.addEventListener('change', () => 
     {
-        wheel.style.visibility ="visible";
-    }
-    else{
-        wheel.style.visibility = "hidden";
-    }
+        document.querySelectorAll('.row').forEach(a => container.removeChild(a));
+        createGrid();
+    });
+
+function paint(grid){
+    if (black.classList.contains('active'))
+        grid.style.backgroundColor = 'black';
+    if(color.classList.contains('active'))
+        grid.style.backgroundColor = colorPicker.value;
 }
 
 mode.forEach(a => a.addEventListener('click', () => {
     mode.forEach(x => x.classList.remove('active'));
     a.classList.add('active');
-    colorWheel();
+    if(color.classList.contains('active'))
+        wheel.style.visibility ="visible";
+    else
+        wheel.style.visibility = "hidden";
 }));
 
-if (black.classList.contains('active'))
-    grid.forEach(a => a.addEventListener('mouseover', () => a.style.backgroundColor = 'black'));
+/*if (black.classList.contains('active'))
+    grid.forEach(a => a.addEventListener('mouseover', () => a.style.backgroundColor = 'black'));*/
