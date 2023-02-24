@@ -18,22 +18,18 @@ body {
     padding-right: 100px;
 }
 
-
-
 #choices {
-    flex: 1;
     display: flex;
     flex-direction: column;
-
+    align-items: center;
 }
 
 #sheet {
     display: flex;
     flex-wrap: wrap;
     margin-left: 20px;
-    height: 750px;
-    width:750px;
-    background-color: #fff;
+    height: 960px;
+    width: 960px;
     border: solid;
 }
 
@@ -47,29 +43,18 @@ button {
 }
 
 
-
-.active {
-    background-image: linear-gradient(to right, wheat 0%, rgb(255, 246, 196) 50%, wheat 100%);
-}
-
 button:hover,
-.active{
-    background-image: linear-gradient(to right, wheat 0%, rgb(255, 246, 196) 50%, wheat 100%);
-}
-
-div .grid {
-    display: inline-block;
-    border: none;
-    height: 100%;
-    top: 0%;
-    margin: 0;
+.active
+{
+    background-image: linear-gradient(to right, wheat 0%, rgb(255, 252, 237) 50%, wheat 100%);
 }
 
 #size {
     height: 30px;
     font-size: 20px;
     text-align: center;
-    width: 60px;
+    margin-top: 10px;
+    width:200px;
 }
 
 #colorPicker {
@@ -82,14 +67,11 @@ div .grid {
 #wheel
 {
     margin-top: 10px;
-    margin-left: 35px;
     margin-bottom: 10px;
     width: 100px;
     height: 100px;
-    border-width: 1px;
-    border-style:outset;
+    border-style: solid;
     border-radius: 50%;
     overflow: hidden;
-    visibility: hidden;
 }
 
