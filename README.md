@@ -9,3 +9,4 @@ Project contains following functions:
  - shading existing color of element;
  - clearing grid of all colors.
 
+Live preview: https://mlypai.github.io/etch-a-sketch/
