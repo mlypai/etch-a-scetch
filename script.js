@@ -10,6 +10,7 @@ const clear = document.getElementById('clear');
 const wheel = document.getElementById('wheel');
 const colorPicker = document.getElementById('colorPicker');
 var grid;
+let mouseDown = 0;
 
 color.classList.add('active');
 
@@ -23,16 +24,19 @@ function createGrid(){
         elem.style.height = `${100 / gridSize.value}%`;
         elem.style.width = elem.style.height;
         elem.style.backgroundColor = 'rgb(255, 255, 255)';
+        elem.ondragstart = () => false;
+        elem.onmousedown = () => ++mouseDown;
+        elem.onmouseup = () => --mouseDown;
         container.appendChild(elem);
     }
     grid = document.querySelectorAll('.grid');
+    grid.forEach(a => a.addEventListener('mousedown', paint));
     grid.forEach(a => a.addEventListener('mouseover', paint));
     clear.addEventListener('click', () => grid.forEach(a => a.style.backgroundColor = 'rgb(255, 255, 255)'));
 }
 
 /*creating initial grid*/
-if(!grid)
-    createGrid();
+createGrid();
 
 /*removes old grid and creates new one when size of grid changes*/
 gridSize.addEventListener('change', () => 
@@ -43,14 +47,17 @@ gridSize.addEventListener('change', () =>
 
 /*coloring background depending on which mode is active*/
 function paint(){
-    if(color.classList.contains('active'))
-        this.style.backgroundColor = colorPicker.value;
-    if(rainbow.classList.contains('active'))
-        this.style.backgroundColor = `rgb(${getRand()}, ${getRand()}, ${getRand()})`;
-    if(shade.classList.contains('active'))
+    if(mouseDown)
     {
-        var rgb = this.style.backgroundColor.replace(/[a-z]|\(|\)|\s/g, "").split(',');
-        this.style.backgroundColor = `rgb(${rgb[0] -25}, ${rgb[1] -25}, ${rgb[2] -25})`;
+        if(color.classList.contains('active'))
+            this.style.backgroundColor = colorPicker.value;
+        if(rainbow.classList.contains('active'))
+            this.style.backgroundColor = `rgb(${getRand()}, ${getRand()}, ${getRand()})`;
+        if(shade.classList.contains('active'))
+        {
+            var rgb = this.style.backgroundColor.replace(/[a-z]|\(|\)|\s/g, "").split(',');
+            this.style.backgroundColor = `rgb(${rgb[0] -25}, ${rgb[1] -25}, ${rgb[2] -25})`;
+        }
     }
 }
 
