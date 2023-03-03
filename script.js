@@ -13,7 +13,9 @@ var grid;
 let mouseDown = 0;
 
 color.classList.add('active');
-
+document.body.onmousedown = () => mouseDown = 1;
+document.body.onmouseup = () => mouseDown = 0;
+document.body.ondragstart = () => false;
 
 /*creating small squares and adding them to sheet and assigning event listeners related to them*/
 function createGrid(){
@@ -25,8 +27,7 @@ function createGrid(){
         elem.style.width = elem.style.height;
         elem.style.backgroundColor = 'rgb(255, 255, 255)';
         elem.ondragstart = () => false;
-        elem.onmousedown = () => ++mouseDown;
-        elem.onmouseup = () => --mouseDown;
+        elem.onmousedown = () => mouseDown = 1;
         container.appendChild(elem);
     }
     grid = document.querySelectorAll('.grid');
