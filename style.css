@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
-    background-color: wheat;
+    background-color: rgb(119, 182, 255);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -15,6 +15,28 @@ h1{
     margin: 20px 0;
 }
 
+#sheet,
+#choices{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    border: solid;
+    border-width: 5px;
+    overflow: hidden;
+    border-color: rgb(233, 45, 139);
+}
+
+#sheet {
+    height: 90vmin;
+    width: 90vmin;
+    margin: 10px 10px;    
+}
+
+#choices {
+    flex-direction: column;
+    align-items: center; 
+}
+
 #menu{
     margin: 5px 5vmin;
     display: flex;
@@ -22,49 +44,33 @@ h1{
     justify-content: center;
     align-items: center;
     min-height: 50vmin;
-    max-width: 100%;
+    max-width: 100%;    
+}
+
+#menu,
+button{
+    font-family: "Dancing Script", sans-serif;
+    color: rgb(233, 45, 139);
     font-size: 30px;
-
-}
-
-#choices {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 10px;
-    border: solid;
-}
-
-#sheet {
-    display: flex;
-    flex-wrap: wrap;
-    max-height: 960px;
-    max-width: 960px;
-    height: 90vmin;
-    width: 90vmin;
-    margin: 10px 10px;
-    overflow: hidden;
-    border-radius: 10px;
-    border: solid;
 }
 
 button {
-    background-color: wheat;
-    width: 100%;
-    border: thin;
-    height: 50px;
-    font-family: "Dancing Script", sans-serif;
-    font-size: 30px;
+    border: none;
+    height: 50px;    
 }
+
+#choices,
+button{
+    width: 100%;
+    background-color: rgb(255, 203, 229);
+}
+
 
 
 button:hover,
 .active
 {
-    background-image: linear-gradient(to right, wheat 0%, rgb(255, 252, 237) 50%, wheat 100%);
+    background-image: linear-gradient(to right,  rgb(255, 203, 229) 0%, rgb(255, 252, 237) 50%,  rgb(255, 203, 229) 100%);
 }
 
 #size {
