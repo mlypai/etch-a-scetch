@@ -2,7 +2,6 @@ var container = document.getElementById('sheet');
 let gridSize = document.getElementById('size');
 
 var mode = document.querySelectorAll('.mode');
-const black = document.getElementById('black');
 const color = document.getElementById('color');
 const shade = document.getElementById('shade');
 const rainbow = document.getElementById('rainbow');
@@ -12,7 +11,7 @@ const wheel = document.getElementById('wheel');
 const colorPicker = document.getElementById('colorPicker');
 var grid;
 
-black.classList.add('active');
+color.classList.add('active');
 
 
 /*creating small squares and adding them to sheet and assigning event listeners related to them*/
@@ -22,12 +21,12 @@ function createGrid(){
         var elem = document.createElement('div');
         elem.classList.add('grid');
         elem.style.height = `${100 / gridSize.value}%`;
-        elem.style.width = `${100 / gridSize.value}%`;
+        elem.style.width = elem.style.height;
         elem.style.backgroundColor = 'rgb(255, 255, 255)';
         container.appendChild(elem);
     }
     grid = document.querySelectorAll('.grid');
-    grid.forEach(a => a.addEventListener('mouseover', () => paint(a)));
+    grid.forEach(a => a.addEventListener('mouseover', paint));
     clear.addEventListener('click', () => grid.forEach(a => a.style.backgroundColor = 'rgb(255, 255, 255)'));
 }
 
@@ -43,17 +42,15 @@ gridSize.addEventListener('change', () =>
 });
 
 /*coloring background depending on which mode is active*/
-function paint(grid){
-    if (black.classList.contains('active'))
-        grid.style.backgroundColor = 'rgb(0,0,0)';
+function paint(){
     if(color.classList.contains('active'))
-        grid.style.backgroundColor = colorPicker.value;
+        this.style.backgroundColor = colorPicker.value;
     if(rainbow.classList.contains('active'))
-        grid.style.backgroundColor = `rgb(${getRand()}, ${getRand()}, ${getRand()})`;
+        this.style.backgroundColor = `rgb(${getRand()}, ${getRand()}, ${getRand()})`;
     if(shade.classList.contains('active'))
     {
-        var rgb = grid.style.backgroundColor.replace(/[a-z]|\(|\)|\s/g, "").split(',');
-        grid.style.backgroundColor = `rgb(${rgb[0] -25}, ${rgb[1] -25}, ${rgb[2] -25})`;
+        var rgb = this.style.backgroundColor.replace(/[a-z]|\(|\)|\s/g, "").split(',');
+        this.style.backgroundColor = `rgb(${rgb[0] -25}, ${rgb[1] -25}, ${rgb[2] -25})`;
     }
 }
 
