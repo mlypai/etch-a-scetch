@@ -9,3 +9,4 @@ Project accomplish following tasks:
  - shading existing color of grid element;
  - clearing grid and setting color of its elements back to white.
 
+Live preview: https://mlypai.github.io/etch-a-sketch/
